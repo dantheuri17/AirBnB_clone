@@ -1,12 +1,12 @@
 #!/usr/bin/python3
-"""State Class
-"""
+"""module for State class"""
 from models.base_model import BaseModel
 
 
 class State(BaseModel):
-    """State Class
-    Args:
-        BaseModel ([class]): [class inherited by State]
-    """
+    """State class"""
     name = ""
+
+    def __init__(self, *args, **kwargs):
+        """initializes class State"""
+        super().__init__(*args, **kwargs)

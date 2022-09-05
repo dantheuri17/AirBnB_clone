@@ -3,15 +3,9 @@
 
 import json
 from models.base_model import BaseModel
-from models.user import User
-from models.city import City
-from models.place import Place
-from models.amenity import Amenity
-from models.review import Review
-from models.state import State
 
-classes = {"BaseModel": BaseModel, "User": User, "City": City, "Place": Place,
-           "Amenity": Amenity, "Review": Review, "State": State}
+
+classes = {"BaseModel": BaseModel}
 
 
 class FileStorage:
@@ -45,7 +39,7 @@ class FileStorage:
         with open(self.__file_path, "w") as myFile:
             json.dump(new_json, myFile)
 
-    def reload(self):
+    def reloard(self):
         """
         deserializes the JSON file to __objects only if file exists
         """
@@ -53,7 +47,7 @@ class FileStorage:
             with open(self.__file_path, encoding="UTF-8") as myFile:
                 json_obj = json.load(myFile)
             for key, value in json_obj.items():
-                name = classes[value["__class__"]](**value)
+                name = models.classes[value["__class__"]](**value)
                 self.__objects[key] = name
         except FileNotFoundError:
             pass
